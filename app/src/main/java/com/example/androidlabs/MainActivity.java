@@ -16,6 +16,6 @@ public class MainActivity extends AppCompatActivity {
         Button btn = (Button)findViewById(R.id.button);
         EditText edt = (EditText)findViewById(R.id.editText) ;
         TextView txt = (TextView)findViewById(R.id.textView) ;
-
+        btn.setOnClickListener((click) -> txt.setText(edt.getText()));
     }
 }
