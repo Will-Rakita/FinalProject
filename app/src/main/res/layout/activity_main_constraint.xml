@@ -12,6 +12,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="16dp"
 
+
         android:text="@string/i_love_android_lab2"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +21,11 @@
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="2dp"
+        android:layout_marginStart="56dp"
         android:src="@drawable/flag"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <Switch
@@ -61,8 +63,9 @@
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="476dp"
+        android:layout_marginBottom="432dp"
         android:hint="@string/i_love_android_lab2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox" />
 </androidx.constraintlayout.widget.ConstraintLayout>
