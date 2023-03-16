@@ -17,21 +17,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_constraint);
+        setContentView(R.layout.activity_main);
         Button btn = (Button)findViewById(R.id.button);
-        EditText edt = (EditText)findViewById(R.id.editText) ;
-        TextView txt = (TextView)findViewById(R.id.textView) ;
-        CheckBox chk = (CheckBox)findViewById(R.id.checkbox);
-        btn.setOnClickListener((click) -> {txt.setText(edt.getText());
 
-            Toast.makeText(MainActivity.this, R.string.toast_message_lab2 , Toast.LENGTH_LONG ).show();
-        });
-
-        chk.setOnCheckedChangeListener((cb, isChecked) -> {
-            Snackbar.make(chk, "Checkbox is " + isChecked, Snackbar.LENGTH_LONG)
-                    .setAction("Undo", click-> chk.setChecked(!isChecked))
-                    .show();
-        });
 
 
 
