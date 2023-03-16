@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello_world">Bonjour le monde</string>
-    <string name="button_text">Je suis un bouton!</string>
+    <string name="Enter_Your_Name">entrez votre nom</string>
+    <string name="Text_View_Next">Suivant!</string>
 
 </resources>
