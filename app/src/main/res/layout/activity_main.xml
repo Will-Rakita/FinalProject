@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ListView
+        android:id="@+id/mylistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+    </ListView>
+
     <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
@@ -34,14 +43,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:layout_editor_absoluteX="17dp" />
-
-    <ListView
-        android:id="@+id/mylistview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
-
-    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
