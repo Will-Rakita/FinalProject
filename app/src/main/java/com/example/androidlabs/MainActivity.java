@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Object getItem(int position) {
-            return "This is row " + position;
+            return "This is row " + (position +1);
         }
 
         @Override
