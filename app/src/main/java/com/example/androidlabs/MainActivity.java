@@ -130,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
         while(results.moveToNext()){
             String name = results.getString(nameCol);
             int urgent = results.getInt(urgentCol);
-            Long idThing = results.getLong(idCol);
-            Boolean isUrgent;
+
+            boolean isUrgent;
             if(urgent == 1){
                 isUrgent = true;
             }
