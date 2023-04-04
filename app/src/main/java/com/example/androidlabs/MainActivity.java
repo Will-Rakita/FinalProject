@@ -2,6 +2,7 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         updateDatabase dbOpener = new updateDatabase(this);
         SQLiteDatabase db = dbOpener.getWritableDatabase();
+        String [] colums = {updateDatabase.COL_ID, updateDatabase.COL_NAME, updateDatabase.COL_URGENT};
+        Cursor results = db.query(false, updateDatabase.TABLE_NAME, colums, null, null, null, null, null, null, null);
+        printCursor(results);
             MyListAdapter myAdapter = new MyListAdapter();
             myList.setAdapter(myAdapter);
 
@@ -80,6 +84,21 @@ public class MainActivity extends AppCompatActivity {
         myAdapter.notifyDataSetChanged();
         });
 
+    }
+    private void printCursor(Cursor c){
+        updateDatabase dbOpener = new updateDatabase(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+        System.out.println(db.getVersion());
+        System.out.println(c.getColumnCount());
+        System.out.println(Arrays.toString(c.getColumnNames()));
+        System.out.println(c.getCount());
+
+        c.moveToFirst();
+        while(!c.isAfterLast() ){
+
+            String fn = c.getString( 1 );
+            System.out.println("Note: " + fn);
+            c.moveToNext(); }
     }
     private class MyListAdapter extends BaseAdapter {
 
