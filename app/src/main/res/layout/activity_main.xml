@@ -17,12 +17,11 @@
 
     <Switch
         android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="107dp"
+        android:layout_height="41dp"
         android:text="@string/urgentSwitch"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/editTextTextPersonName"
-         />
+        app:layout_constraintLeft_toRightOf="@id/editTextTextPersonName" />
 
     <Button
         android:id="@+id/button"
