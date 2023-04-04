@@ -2,4 +2,5 @@
 <resources>
     <string name="urgentSwitch">Urgent</string>
     <string name="addButton">ajouter</string>
+    <string name="addText">Remarque va ici</string>
 </resources>

@@ -2,4 +2,5 @@
     <string name="app_name" translatable="false">AndroidLabs</string>
     <string name="urgentSwitch">Urgent</string>
     <string name="addButton">Add</string>
+    <string name="addText">Note Goes Here</string>
 </resources>
