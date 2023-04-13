@@ -18,7 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-
+    public Bitmap nerd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,20 +27,22 @@ public class MainActivity extends AppCompatActivity {
         req.execute("https://cataas.com/cat?json=true");
     }
     private class CatImages extends AsyncTask<String, Integer, String> {
-        private Bitmap nerd;
+
         @Override
         protected String doInBackground(String... strings) {
             try {
 
                 //create a URL object of what server to contact:
                 URL url = new URL(strings[0]);
-
+                URL url2 = new URL("https://cataas.com/cat");
                 //open the connection
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
+                HttpURLConnection urlConnection2 = (HttpURLConnection) url2.openConnection();
                 //wait for data:
                 InputStream response = urlConnection.getInputStream();
+                InputStream response2 = urlConnection2.getInputStream();
 
+                nerd = BitmapFactory.decodeStream(response2);
 
                 //JSON reading:
                 //Build the entire string response:
@@ -57,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // convert string to JSON:
                 JSONObject uvReport = new JSONObject(result);
-
-
+                //THIS IS THE FINALLY THE JSON ABOVE
+                String fileName = uvReport.getString("file");
 
             }
             catch (Exception e)
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String fromDoInBackground) {
-
+            //It goes here last, the picture remains null the whole time
             Log.i("HTTP", fromDoInBackground);
         }
     }
