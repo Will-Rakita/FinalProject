@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String fromDoInBackground) {
+
             Log.i("HTTP", fromDoInBackground);
         }
     }
