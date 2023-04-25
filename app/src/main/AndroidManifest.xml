@@ -17,6 +17,9 @@
         android:theme="@style/Theme.AndroidLabs"
         tools:targetApi="31">
         <activity
+            android:name=".Dad_joke"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
