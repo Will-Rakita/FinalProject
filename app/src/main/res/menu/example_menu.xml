@@ -11,10 +11,6 @@
         android:title="@string/Name2"
         android:icon="@drawable/freeicon2"
         android:orderInCategory="100"
-        app:showAsAction="always"/>
-    <item android:id="@+id/item3"
-        android:title="@string/Name3"
-        android:icon="@drawable/freeicon3"
-        android:orderInCategory="100"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
+
 </menu>

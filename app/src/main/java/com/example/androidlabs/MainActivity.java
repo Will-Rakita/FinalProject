@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +33,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected( MenuItem item) {
+        String message = null;
+        //Look at your menu XML file. Put a case for every id in that file:
+        switch(item.getItemId())
+        {
+            //what to do when the menu item is selected:
+            case R.id.item1:
+                message = "You clicked item 1";
+                break;
+            case R.id.item2:
+                message = "You clicked item 2";
+                break;
+
+        }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         return true;
+
     }
 
 }
