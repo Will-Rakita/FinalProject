@@ -3,4 +3,7 @@
     <string name="urgentSwitch">Urgent</string>
     <string name="addButton">ajouter</string>
     <string name="addText">Remarque va ici</string>
+    <string name="Name1">Ce choix 1</string>
+    <string name="Name2">Ce choix 2</string>
+    <string name="Name3">Ce choix 3</string>
 </resources>
