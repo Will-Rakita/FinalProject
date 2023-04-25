@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onContextItemSelected( MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         String message = null;
         //Look at your menu XML file. Put a case for every id in that file:
         switch(item.getItemId())
