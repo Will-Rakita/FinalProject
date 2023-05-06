@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="urgentSwitch">Urgent</string>
-    <string name="addButton">ajouter</string>
-    <string name="addText">Remarque va ici</string>
-    <string name="Name1">Ce choix 1</string>
-    <string name="Name2">Ce choix 2</string>
-    <string name="Name3">Ce choix 3</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="Random">Urgent</string>
+
 </resources>

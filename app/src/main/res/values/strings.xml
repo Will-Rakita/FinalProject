@@ -1,11 +1,4 @@
 <resources>
     <string name="app_name" translatable="false">Discord</string>
-    <string name="urgentSwitch">Urgent</string>
-    <string name="addButton">Add</string>
-    <string name="addText">Note Goes Here</string>
-    <string name="Name1">Tis Choice 1</string>
-    <string name="Name2">Tis Choice 2</string>
-    <string name="Name3">Tis Choice 3</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="Random">Urgent</string>
 </resources>
