@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Discord</string>
-    <string name="Random">Urgent</string>
+    <string name="app_name" translatable="false">Final Project: NASA</string>
+    <string name="DatePicker">Press to pick a date</string>
 </resources>
