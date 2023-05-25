@@ -2,4 +2,6 @@
 <resources>
 
     <string name="DatePicker">Press to pick a date</string>
+    <string name="DateDisplay">Date for the saved json is here</string>
+    <string name="DateDisplayCaption">Date of Item:</string>
 </resources>
