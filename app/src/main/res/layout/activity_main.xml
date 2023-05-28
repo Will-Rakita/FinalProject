@@ -9,7 +9,7 @@
     >
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonPickDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/DatePicker"
@@ -19,7 +19,7 @@
     <ListView
         android:layout_width="430dp"
         android:layout_height="814dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPickDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
