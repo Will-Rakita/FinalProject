@@ -9,7 +9,7 @@ public class updateDatabase extends SQLiteOpenHelper {
     public final static String TABLE_NAME = "PAGES";
     public final static String COL_DATE = "DATE";
     public final static String COL_HDURL = "HD_URL";
-    public final static String COL_TITLE = "PAGE_TITLE";
+    public final static String COL_EXPLANATION = "PAGE_EXPLANATION";
     public final static String COL_ID = "_id";
 
 
@@ -18,7 +18,7 @@ public class updateDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COL_DATE + " text, "+ COL_TITLE + " text, " + COL_HDURL + " text);");
+                + COL_DATE + " text, "+ COL_EXPLANATION + " text, " + COL_HDURL + " text);");
     }
 
     @Override

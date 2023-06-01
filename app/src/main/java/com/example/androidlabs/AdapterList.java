@@ -3,36 +3,31 @@ package com.example.androidlabs;
 import java.util.Date;
 
 public class AdapterList {
-    private String Title;
+
     private String Explanation;
     private String pageDate;
-    private long id;
-    public AdapterList(String Title, String pageDate,String Explanation, long id){
-        this.Title = Title;
+    private String HdUrl;
+    public AdapterList( String pageDate,String Explanation, String HdUrl){
+
         this.pageDate = pageDate;
-        this.id = id;
+        this.HdUrl = HdUrl;
         this.Explanation =  Explanation;
     }
-    public String getTitle() {
-        return Title;
-    }
+
     public String getExplanation() {
         return Explanation;
     }
     public String getDate() {
         return pageDate;
     }
-    public void setTitle(String Title) {
-        this.Title = Title;
-    }
     public void setExplanation(String Explanation) {
         this.Explanation = Explanation;
     }
-    public long getLong() {
-        return id;
+    public String getHdUrl() {
+        return HdUrl;
     }
     public void setLong(Long id) {
-        this.id = id;
+        this.HdUrl = HdUrl;
     }
     public void setDate(String pageDate) {
         this.pageDate = pageDate;

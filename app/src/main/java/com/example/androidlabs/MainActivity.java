@@ -7,6 +7,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -19,6 +21,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import org.json.JSONObject;
@@ -74,12 +77,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         setContentView(R.layout.activity_main);
 
         Button button = (Button) findViewById(R.id.buttonPickDate);
+        ListView myList = findViewById(R.id.ListView);
 
-
-
-
-
-
+        updateDatabase dbOpener = new updateDatabase(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+        String [] colums = {updateDatabase.COL_ID, updateDatabase.COL_DATE, updateDatabase.COL_HDURL, updateDatabase.COL_EXPLANATION};
+        Cursor results = db.query(false, updateDatabase.TABLE_NAME, colums, null, null, null, null, null, null, null);
+        printCursor(results);
+        MyListAdapter myAdapter = new MyListAdapter();
+        myList.setAdapter(myAdapter);
 
 
 
@@ -138,5 +144,35 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             //return it to be put in the table
             return newView;
         }
+    }
+    private void printCursor(Cursor c){
+        updateDatabase dbOpener = new updateDatabase(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+
+        c.moveToFirst();
+        while(!c.isAfterLast() ){
+
+            String fn = c.getString( 1 );
+            System.out.println("Page: " + fn);
+            c.moveToNext(); }
+    }
+    private void loadDataFromDatabase(){
+        updateDatabase dbOpener = new updateDatabase(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+
+        String [] colums = {updateDatabase.COL_ID, updateDatabase.COL_DATE, updateDatabase.COL_HDURL, updateDatabase.COL_EXPLANATION};
+        Cursor results = db.query(false, updateDatabase.TABLE_NAME, colums, null, null, null, null, null, null, null);
+
+        int idCol = results.getColumnIndex(updateDatabase.COL_ID);
+        int dateCol = results.getColumnIndex(updateDatabase.COL_DATE);
+        int hdurlCol = results.getColumnIndex(updateDatabase.COL_HDURL) ;
+        int explanationCol = results.getColumnIndex(updateDatabase.COL_EXPLANATION) ;
+        while(results.moveToNext()){
+            String date = results.getString(dateCol);
+            String hdurl = results.getString(hdurlCol);
+            String explanation = results.getString(explanationCol);
+            elements.add(new AdapterList(date, explanation, hdurl));
+        }
+
     }
 }
