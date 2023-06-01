@@ -1,9 +1,11 @@
 package com.example.androidlabs;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -65,6 +67,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     public String currentDate;
     private ArrayList<AdapterList> elements = new ArrayList<>();
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -80,13 +83,33 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         ListView myList = findViewById(R.id.ListView);
 
         updateDatabase dbOpener = new updateDatabase(this);
-        SQLiteDatabase db = dbOpener.getWritableDatabase();
-        String [] colums = {updateDatabase.COL_ID, updateDatabase.COL_DATE, updateDatabase.COL_HDURL, updateDatabase.COL_EXPLANATION};
-        Cursor results = db.query(false, updateDatabase.TABLE_NAME, colums, null, null, null, null, null, null, null);
-        printCursor(results);
         MyListAdapter myAdapter = new MyListAdapter();
         myList.setAdapter(myAdapter);
+       SQLiteDatabase db = dbOpener.getWritableDatabase();
+        String [] colums = {updateDatabase.COL_ID, updateDatabase.COL_DATE};
+        Cursor results = db.query(false, updateDatabase.TABLE_NAME, colums, null, null, null, null, null, null, null);
+       printCursor(results);
 
+
+
+        loadDataFromDatabase();
+        myAdapter.notifyDataSetChanged();
+        myList.setOnItemLongClickListener((p,b,pos,id)->{
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Delete Row Selected?")
+
+                    .setMessage("Do you want to delete this? " + myAdapter.getItem(pos))
+                    .setPositiveButton("Yes", (click, arg) ->{
+                        deleteElement(elements.get(pos));
+                        elements.remove(pos);
+                        myAdapter.notifyDataSetChanged();
+                    })
+                    .setNegativeButton("NO", (click, arg) ->{})
+                    .setNeutralButton("Maybe", (click, arg) ->{})
+
+                    .create().show();
+            return true;
+        });
 
 
         button.setOnClickListener(new View.OnClickListener(){
@@ -95,10 +118,18 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 DialogFragment datePicker = new DatePickerFragment();
                 datePicker.show(getSupportFragmentManager(), "date picker");
 
-
             }
+
         }
         );
+        myList.setOnItemClickListener((p,b,pos,id)->{
+            SharedPreferences prefs = getSharedPreferences("SavedDateWeek13", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = prefs.edit();
+            Intent nextPage = new Intent(this, DisplayImage.class);
+            edit.putString("DateText", elements.get(pos).getDate());
+            edit.commit();
+            startActivityForResult(nextPage, 1);
+        });
 
     }
 
@@ -111,6 +142,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         Intent nextPage = new Intent(this, DisplayImage.class);
         edit.putString("DateText", currentDate);
         edit.commit();
+
+        elements.add(new AdapterList(currentDate, elements.size() ));
+        updateDatabase dbOpener = new updateDatabase(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+        ContentValues newRowValues = new ContentValues();
+        newRowValues.put(updateDatabase.COL_DATE,currentDate );
+        long newId = db.insert(updateDatabase.TABLE_NAME, null, newRowValues);
+
         startActivityForResult(nextPage, 1);
     }
     private class MyListAdapter extends BaseAdapter {
@@ -122,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         @Override
         public Object getItem(int position) {
-            return "This is row " + (position);
+            return "This is row " + (position+1);
         }
 
         @Override
@@ -160,19 +199,26 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         updateDatabase dbOpener = new updateDatabase(this);
         SQLiteDatabase db = dbOpener.getWritableDatabase();
 
-        String [] colums = {updateDatabase.COL_ID, updateDatabase.COL_DATE, updateDatabase.COL_HDURL, updateDatabase.COL_EXPLANATION};
+        String [] colums = {updateDatabase.COL_ID, updateDatabase.COL_DATE};
         Cursor results = db.query(false, updateDatabase.TABLE_NAME, colums, null, null, null, null, null, null, null);
 
         int idCol = results.getColumnIndex(updateDatabase.COL_ID);
         int dateCol = results.getColumnIndex(updateDatabase.COL_DATE);
-        int hdurlCol = results.getColumnIndex(updateDatabase.COL_HDURL) ;
-        int explanationCol = results.getColumnIndex(updateDatabase.COL_EXPLANATION) ;
+
         while(results.moveToNext()){
             String date = results.getString(dateCol);
-            String hdurl = results.getString(hdurlCol);
-            String explanation = results.getString(explanationCol);
-            elements.add(new AdapterList(date, explanation, hdurl));
+            elements.add(new AdapterList(date, results.getCount() ));
+            System.out.println(date + ", " + results.getCount());
         }
+
+
+
+    }
+    protected void deleteElement(AdapterList e){
+        updateDatabase dbOpener = new updateDatabase(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+        db.delete( updateDatabase.TABLE_NAME, "_id = ?", new String[] {Long.toString(e.getId()) });
 
     }
 }
+

@@ -5,4 +5,5 @@
     <string name="DateDisplayCaption">Date of Item:</string>
     <string name="ReturnToPrevious">Return to Previous Page</string>
     <string name="Explanation">Explanation</string>
+    <string name="Delete">Delete Row Selected?</string>
 </resources>

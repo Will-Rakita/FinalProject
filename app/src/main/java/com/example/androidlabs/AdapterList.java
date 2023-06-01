@@ -4,31 +4,28 @@ import java.util.Date;
 
 public class AdapterList {
 
-    private String Explanation;
+
     private String pageDate;
-    private String HdUrl;
-    public AdapterList( String pageDate,String Explanation, String HdUrl){
+
+    private long id;
+    public AdapterList( String pageDate, long id){
 
         this.pageDate = pageDate;
-        this.HdUrl = HdUrl;
-        this.Explanation =  Explanation;
+        this.id = id;
     }
 
-    public String getExplanation() {
-        return Explanation;
+
+    public long getId() {
+        return id;
     }
     public String getDate() {
         return pageDate;
     }
-    public void setExplanation(String Explanation) {
-        this.Explanation = Explanation;
+
+    public void setId(long id) {
+        this.id = id;
     }
-    public String getHdUrl() {
-        return HdUrl;
-    }
-    public void setLong(Long id) {
-        this.HdUrl = HdUrl;
-    }
+
     public void setDate(String pageDate) {
         this.pageDate = pageDate;
     }
