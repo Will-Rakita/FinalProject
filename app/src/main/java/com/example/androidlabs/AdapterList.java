@@ -5,9 +5,9 @@ import java.util.Date;
 public class AdapterList {
     private String Title;
     private String Explanation;
-    private Date pageDate;
+    private String pageDate;
     private long id;
-    public AdapterList(String Title, Date pageDate,String Explanation, long id){
+    public AdapterList(String Title, String pageDate,String Explanation, long id){
         this.Title = Title;
         this.pageDate = pageDate;
         this.id = id;
@@ -19,7 +19,7 @@ public class AdapterList {
     public String getExplanation() {
         return Explanation;
     }
-    public Date getDate() {
+    public String getDate() {
         return pageDate;
     }
     public void setTitle(String Title) {
@@ -34,7 +34,7 @@ public class AdapterList {
     public void setLong(Long id) {
         this.id = id;
     }
-    public void setDate(Date urgent) {
-        this.pageDate = urgent;
+    public void setDate(String pageDate) {
+        this.pageDate = pageDate;
     }
 }

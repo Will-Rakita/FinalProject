@@ -12,7 +12,10 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -28,6 +31,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.os.Bundle;
@@ -53,9 +57,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import android.content.Intent;
+import android.widget.TextView;
+
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     public String currentDate;
-
+    private ArrayList<AdapterList> elements = new ArrayList<>();
     @Override
     protected void onPause() {
         super.onPause();
@@ -92,5 +98,36 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         edit.commit();
         startActivityForResult(nextPage, 1);
     }
+    private class MyListAdapter extends BaseAdapter {
 
+        @Override
+        public int getCount() {
+            return elements.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return "This is row " + (position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return (long)position;
+        }
+
+        @Override
+        public View getView(int position, View old, ViewGroup parent) {
+            View newView = old;
+            LayoutInflater inflater = getLayoutInflater();
+
+            //make new row:
+            if(newView ==null){
+                newView = inflater.inflate(R.layout.photo_display,parent, false );
+            }
+            TextView tView = newView.findViewById(R.id.textView2);
+            tView.setText(elements.get(position).getDate());
+            //return it to be put in the table
+            return newView;
+        }
     }
+}
