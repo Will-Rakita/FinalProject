@@ -8,6 +8,12 @@ public class AdapterList {
     private String pageDate;
 
     private long id;
+
+    /**
+     * The default constructor
+     * @param pageDate
+     * @param id
+     */
     public AdapterList( String pageDate, long id){
 
         this.pageDate = pageDate;

@@ -1,5 +1,10 @@
 package com.example.androidlabs;
-
+/**
+ * This class creates a list that can be clicked to head to another activity that hostes the images from nasas denpending on the date.
+ * @author William Rakita
+ * @version 1.2
+ *
+ */
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -65,9 +70,14 @@ import android.content.Intent;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+
     public String currentDate;
     private ArrayList<AdapterList> elements = new ArrayList<>();
 
+    /**
+     * @params currentDate - String type
+     * @params elements - Arraylist of adapter type
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -76,22 +86,24 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Button button = (Button) findViewById(R.id.buttonPickDate);
         ListView myList = findViewById(R.id.ListView);
-
+        //Opening the database
         updateDatabase dbOpener = new updateDatabase(this);
         MyListAdapter myAdapter = new MyListAdapter();
         myList.setAdapter(myAdapter);
        SQLiteDatabase db = dbOpener.getWritableDatabase();
         String [] colums = {updateDatabase.COL_ID, updateDatabase.COL_DATE};
+        //printing the database
         Cursor results = db.query(false, updateDatabase.TABLE_NAME, colums, null, null, null, null, null, null, null);
        printCursor(results);
 
 
-
+        //loading the database
         loadDataFromDatabase();
         myAdapter.notifyDataSetChanged();
         myList.setOnItemLongClickListener((p,b,pos,id)->{

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="DatePicker">Press to pick a date</string>
-    <string name="DateDisplay">Date for the saved json is here</string>
-    <string name="DateDisplayCaption">Date of Item:</string>
-    <string name="ReturnToPrevious">Return to Previous Page</string>
-    <string name="Explanation">Explanation</string>
-    <string name="Delete">Delete Row Selected?</string>
+    <string name="DatePicker">Appuyez pour choisir une date</string>
+    <string name="DateDisplay">La date pour le json enregistré est ici</string>
+    <string name="DateDisplayCaption">Date de article:</string>
+    <string name="ReturnToPrevious">Retourner à la page précédente</string>
+    <string name="Explanation">Explication</string>
+    <string name="Delete">Supprimer la ligne sélectionnée?</string>
 </resources>
