@@ -74,6 +74,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         setContentView(R.layout.activity_main);
 
         Button button = (Button) findViewById(R.id.buttonPickDate);
+
+
+
+
+
+
+
+
+
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
